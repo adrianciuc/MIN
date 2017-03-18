@@ -29,6 +29,7 @@ gradle-app.setting
 .idea/**/sqlDataSources.xml
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
+.idea/misc.xml
 
 # Gradle:
 .idea/**/gradle.xml
@@ -58,3 +59,7 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+.idea/compiler.xml
+.idea/modules.xml
+.idea/modules/
+.idea/vcs.xml
