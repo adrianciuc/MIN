@@ -1,18 +1,18 @@
-package com.min.hillclimbing;
+package com.min.hillclimbing.functions;
 
-public class Function {
+public abstract class Function {
 
     private final double lowerBound;
     private final double upperBound;
     private final int numberOfElementsInSolution;
     private final int sizeOfElementInSolution;
 
-    Function(double lowerBound, double upperBound, int numberOfElementsInSolution) {
+    Function(double lowerBound, double upperBound,
+             int numberOfElementsInSolution, int sizeOfElementInSolution) {
         this.lowerBound = lowerBound;
         this.upperBound = upperBound;
         this.numberOfElementsInSolution = numberOfElementsInSolution;
-        this.sizeOfElementInSolution =
-                new Math().computeBitsNumberForInterval(lowerBound, upperBound);
+        this.sizeOfElementInSolution = sizeOfElementInSolution;
     }
 
     public int getNumberOfElementsInSolution() {
@@ -30,4 +30,6 @@ public class Function {
     public int getSizeOfElementInSolution() {
         return sizeOfElementInSolution;
     }
+
+    public abstract Double evaluateFor(double[][] input);
 }

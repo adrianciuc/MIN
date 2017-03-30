@@ -1,5 +1,7 @@
 package com.min.hillclimbing;
 
+import com.min.hillclimbing.functions.Function;
+
 public class HillClimbing {
 
   private final Function function;
