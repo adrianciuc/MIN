@@ -1,6 +1,6 @@
-package com.min.hillclimbing;
+package com.min.hillclimbing.solution;
 
-class Solution {
+public class Solution {
 
     private int[][] representation;
     private int size;

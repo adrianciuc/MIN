@@ -1,10 +1,10 @@
-package com.min.hillclimbing;
+package com.min.hillclimbing.solution;
 
 import java.util.Random;
 
-class RandomSolutionBuilder {
+public class RandomSolutionBuilder {
 
-  Solution randomSolutionOfSize(int size, int sizeOfEachElement) {
+  public Solution randomSolutionOfSize(int size, int sizeOfEachElement) {
     Random random = new Random();
     int[][] solution = new int[size][sizeOfEachElement];
     for(int i = 0; i<size; i++) {

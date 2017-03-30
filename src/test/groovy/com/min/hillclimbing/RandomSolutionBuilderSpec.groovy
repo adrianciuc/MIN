@@ -1,5 +1,7 @@
 package com.min.hillclimbing
 
+import com.min.hillclimbing.solution.RandomSolutionBuilder
+import com.min.hillclimbing.solution.Solution
 import spock.lang.Specification
 
 
