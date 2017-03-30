@@ -1,4 +1,4 @@
-package com.min.hillclimbing.functions;
+package com.min.hillclimbing.function;
 
 public abstract class Function {
 
@@ -31,5 +31,5 @@ public abstract class Function {
         return sizeOfElementInSolution;
     }
 
-    public abstract Double evaluateFor(double[][] input);
+    public abstract double evaluateFor(double[] candidateSolution);
 }
