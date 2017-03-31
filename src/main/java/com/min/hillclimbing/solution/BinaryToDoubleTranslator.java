@@ -1,14 +1,16 @@
 package com.min.hillclimbing.solution;
 
+import static java.lang.Math.pow;
+
 public class BinaryToDoubleTranslator {
 
     public double[] translate(int[][] binaryArray) {
         double[] translation = new double[binaryArray.length];
         for (int j = 0; j < binaryArray.length; j++) {
-            int sum = 0;
+            double sum = 0;
             int[] element = binaryArray[j];
             for (int i = 0; i < element.length - 1; i++) {
-                sum = sum + 2 ^ (element.length - 1 - i) * element[i];
+                sum = sum + pow((element.length - 1 - i), 2) * element[i];
             }
             translation[j] = sum;
         }

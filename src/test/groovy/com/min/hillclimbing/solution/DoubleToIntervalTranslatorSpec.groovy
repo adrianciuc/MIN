@@ -12,10 +12,11 @@ class DoubleToIntervalTranslatorSpec extends Specification {
             double[] numbers = number.toArray().collect {(double)it}
             def translation = translator.translate(numbers, lowerBound.doubleValue(), upperBound.doubleValue())
         then:
+            translation[0] == expectedTranslation.doubleValue()
             translation[0] >= lowerBound
             translation[0] <= upperBound
         where:
-            number    |   lowerBound  |   upperBound
-            [2000]    |   -5.12       |   5.12
+            number      |   lowerBound  |   upperBound  | expectedTranslation
+            [714]       |   -5.12       |   5.12        | 2.026979472140763
     }
 }
