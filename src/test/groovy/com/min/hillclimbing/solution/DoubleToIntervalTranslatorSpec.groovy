@@ -7,9 +7,9 @@ class DoubleToIntervalTranslatorSpec extends Specification {
 
     def "should translate #number in interval #lowerBound - #upperBound"() {
         given:
-            def translator = new DoubleToIntervalTranslator()
+            def translator = new IntegerToDoubleIntervalTranslator()
         when:
-            double[] numbers = number.toArray().collect {(double)it}
+            int[] numbers = number.toArray().collect {(int)it}
             def translation = translator.translate(numbers, lowerBound.doubleValue(), upperBound.doubleValue())
         then:
             translation[0] == expectedTranslation.doubleValue()

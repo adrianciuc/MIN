@@ -7,14 +7,14 @@ class BinaryToDoubleTranslatorSpec extends Specification {
 
     def "should translate binary array to double array"() {
         given:
-            def translator = new BinaryToDoubleTranslator()
+            def translator = new BinaryToIntegerTranslator()
             int[][] toBeTranslated = [
                     [1,0,1,0]
             ]
         when:
-            double[] translated = translator.translate(toBeTranslated)
+            int[] translated = translator.translate(toBeTranslated)
         then:
             translated.length == 1
-            translated[0] == 10.0
+            translated[0] == 10
     }
 }
