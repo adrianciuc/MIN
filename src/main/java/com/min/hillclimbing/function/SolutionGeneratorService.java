@@ -14,10 +14,7 @@ public class SolutionGeneratorService {
     }
 
     public Solution getRandom(Function function) {
-        return builder.randomSolutionOfSize(
-                function.getNumberOfElementsInSolution(),
-                math.computeBitsNumberForInterval(
-                        function.getLowerBound(),
-                        function.getUpperBound()));
+        return builder.randomSolutionOfSize(function.getNumberOfElementsInSolution(),
+                math.computeBitsNumberForInterval(function.getLowerBound(), function.getUpperBound()));
     }
 }

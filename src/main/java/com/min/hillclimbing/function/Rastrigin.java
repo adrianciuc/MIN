@@ -8,9 +8,8 @@ class Rastrigin extends Function {
 
     Rastrigin(double lowerBound,
               double upperBound,
-              int numberOfElementsInSolution,
-              int sizeOfElementInSolution) {
-        super(lowerBound, upperBound, numberOfElementsInSolution, sizeOfElementInSolution);
+              int numberOfElementsInSolution) {
+        super(lowerBound, upperBound, numberOfElementsInSolution);
     }
 
     @Override
