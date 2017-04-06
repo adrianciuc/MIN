@@ -1,5 +1,6 @@
 package com.min.hillclimbing
 
+import com.min.hillclimbing.function.Math
 import spock.lang.Specification
 import spock.lang.Unroll
 

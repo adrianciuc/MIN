@@ -8,10 +8,10 @@ import spock.lang.Specification
 
 class SolutionTranslatorServiceSpec extends Specification {
 
-    def binaryToInteger = Stub(BinaryToIntegerTranslator)
-    def integerToDoubleInterval = Stub(IntegerToDoubleIntervalTranslator)
-    def solution = Stub(Solution)
-    def function = Stub(Function)
+    def binaryToInteger = Mock(BinaryToIntegerTranslator)
+    def integerToDoubleInterval = Mock(IntegerToDoubleIntervalTranslator)
+    def solution = Mock(Solution)
+    def function = Mock(Function)
 
     def "should translate"() {
         given:
@@ -19,25 +19,12 @@ class SolutionTranslatorServiceSpec extends Specification {
         when:
             double[] translated = translator.translate(solution, function)
         then:
-            1 * solution.representation >> solutionRepresentation()
-            1 * binaryToInteger.translate(solutionRepresentation()) >> representationToInteger()
+            1 * solution.representation >> [1011001010]
+            1 * binaryToInteger.translate([1011001010]) >> [714]
             1 * function.lowerBound >> -5.12
             1 * function.upperBound >> 5.12
-            1 * integerToDoubleInterval.translate(
-                    representationToInteger(),
-                    function.lowerBound,
-                    function.upperBound)
-    }
-
-    int[][] solutionRepresentation() {
-        int[][] representation = new int[1][2]
-        representation[0] = [1,1]
-        return representation
-    }
-
-    int[] representationToInteger() {
-        int[] integers = new int[1]
-        integers[0] = 3
-        return integers
+            1 * integerToDoubleInterval.translate([714], -5.12, 5.12) >> 2.026979472140763
+            translated.length == 1
+            translated[0] == 2.026979472140763
     }
 }
