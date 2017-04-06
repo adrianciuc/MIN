@@ -9,10 +9,9 @@ public class SolutionTranslatorService {
     private final BinaryToIntegerTranslator binaryToIntegerTranslator;
     private final IntegerToDoubleIntervalTranslator integerToDoubleIntervalTranslator;
 
-    public SolutionTranslatorService(BinaryToIntegerTranslator binaryToIntegerTranslator,
-                                     IntegerToDoubleIntervalTranslator integerToDoubleIntervalTranslator) {
-        this.binaryToIntegerTranslator = binaryToIntegerTranslator;
-        this.integerToDoubleIntervalTranslator = integerToDoubleIntervalTranslator;
+    public SolutionTranslatorService() {
+        this.binaryToIntegerTranslator = new BinaryToIntegerTranslator();
+        this.integerToDoubleIntervalTranslator = new IntegerToDoubleIntervalTranslator();
     }
 
     public double[] translate(Solution solution, Function function) {
