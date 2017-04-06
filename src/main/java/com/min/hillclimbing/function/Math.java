@@ -1,4 +1,4 @@
-package com.min.hillclimbing;
+package com.min.hillclimbing.function;
 
 import static java.lang.Math.log;
 import static java.lang.Math.pow;

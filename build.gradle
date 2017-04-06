@@ -16,5 +16,8 @@ repositories {
 
 dependencies {
   compile "org.codehaus.groovy:groovy-all:2.4.1"
+  compile 'com.google.guava:guava:21.0'
   testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-3"
+  testCompile "cglib:cglib-nodep:3.2.5"
+  testCompile "org.objenesis:objenesis:2.5.1"
 }

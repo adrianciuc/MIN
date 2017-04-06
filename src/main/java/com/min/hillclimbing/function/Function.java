@@ -5,14 +5,12 @@ public abstract class Function {
     private final double lowerBound;
     private final double upperBound;
     private final int numberOfElementsInSolution;
-    private final int sizeOfElementInSolution;
 
     Function(double lowerBound, double upperBound,
-             int numberOfElementsInSolution, int sizeOfElementInSolution) {
+             int numberOfElementsInSolution) {
         this.lowerBound = lowerBound;
         this.upperBound = upperBound;
         this.numberOfElementsInSolution = numberOfElementsInSolution;
-        this.sizeOfElementInSolution = sizeOfElementInSolution;
     }
 
     public int getNumberOfElementsInSolution() {
@@ -25,10 +23,6 @@ public abstract class Function {
 
     public double getUpperBound() {
         return upperBound;
-    }
-
-    public int getSizeOfElementInSolution() {
-        return sizeOfElementInSolution;
     }
 
     public abstract double evaluateFor(double[] candidateSolution);
