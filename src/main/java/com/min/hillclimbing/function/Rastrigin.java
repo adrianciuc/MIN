@@ -4,9 +4,9 @@ import static java.lang.Math.PI;
 import static java.lang.Math.cos;
 import static java.lang.Math.pow;
 
-class Rastrigin extends Function {
+public class Rastrigin extends Function {
 
-    Rastrigin(double lowerBound,
+    public Rastrigin(double lowerBound,
               double upperBound,
               int numberOfElementsInSolution) {
         super(lowerBound, upperBound, numberOfElementsInSolution);
@@ -16,7 +16,7 @@ class Rastrigin extends Function {
     public double evaluateFor(double[] candidateSolution) {
         double sum = 10 * candidateSolution.length;
         for (double element : candidateSolution) {
-            sum = sum + (pow(element, 2) - 10 * cos(2 * PI * element));
+            sum = sum + ((pow(element, 2) - (10 * cos(2 * PI * element))));
         }
         return sum;
     }

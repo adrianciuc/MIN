@@ -12,7 +12,7 @@ public class Solution {
         this.sizeOfEachElement = sizeOfEachElement;
     }
 
-    Solution(int size, int sizeOfEachElement, int[][] representation) {
+    public Solution(int size, int sizeOfEachElement, int[][] representation) {
         this.representation = representation;
         this.size = size;
         this.sizeOfEachElement = sizeOfEachElement;

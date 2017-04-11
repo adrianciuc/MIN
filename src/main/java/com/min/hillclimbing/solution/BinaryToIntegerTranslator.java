@@ -10,7 +10,7 @@ public class BinaryToIntegerTranslator {
             int sum = 0;
             int[] element = binaryArray[j];
             for (int i = 0; i < element.length - 1; i++) {
-                sum = sum + (int)(pow((element.length - 1 - i), 2)) * element[i];
+                sum = sum + (int)(pow(2, (element.length - 1 - i))) * element[i];
             }
             translation[j] = sum;
         }

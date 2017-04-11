@@ -3,7 +3,7 @@ package com.min.hillclimbing.solution
 import spock.lang.Specification
 
 
-class DoubleToIntervalTranslatorSpec extends Specification {
+class IntegerToDoubleIntervalTranslatorSpec extends Specification {
 
     def "should translate #number in interval #lowerBound - #upperBound"() {
         given:
