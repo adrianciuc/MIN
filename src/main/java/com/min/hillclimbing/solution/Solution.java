@@ -6,7 +6,7 @@ public class Solution {
     private int size;
     private int sizeOfEachElement;
 
-    Solution(int size, int sizeOfEachElement) {
+    public Solution(int size, int sizeOfEachElement) {
         this.representation = new int[size][sizeOfEachElement];
         this.size = size;
         this.sizeOfEachElement = sizeOfEachElement;

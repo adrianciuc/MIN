@@ -12,7 +12,9 @@ class MathSpec extends Specification {
     expect:
       number == math.computeBitsNumberForInterval(lowerBound, upperBound)
     where:
-      lowerBound  | upperBound  | number
-      -5.12       | 5.12        | 10
+      lowerBound  | upperBound  || number
+      -5.12       | 5.12        || 10
+      -3          | 3           || 9
+      -2          | 2           || 8
   }
 }

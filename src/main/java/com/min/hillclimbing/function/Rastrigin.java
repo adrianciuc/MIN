@@ -6,9 +6,7 @@ import static java.lang.Math.pow;
 
 public class Rastrigin extends Function {
 
-    public Rastrigin(double lowerBound,
-              double upperBound,
-              int numberOfElementsInSolution) {
+    public Rastrigin(double lowerBound, double upperBound, int numberOfElementsInSolution) {
         super(lowerBound, upperBound, numberOfElementsInSolution);
     }
 

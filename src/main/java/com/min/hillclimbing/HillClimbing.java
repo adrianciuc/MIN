@@ -14,13 +14,13 @@ import static java.util.stream.IntStream.range;
 
 public class HillClimbing {
 
-  private final Function function;
-  private final Integer iterations;
-  private final SolutionGeneratorService solutionService;
-  private final SolutionTranslatorService solutionTranslatorService;
-  private final HammingNeighboursService hammingNeighboursService;
+  protected Function function;
+  protected Integer iterations;
+  protected SolutionGeneratorService solutionService;
+  protected SolutionTranslatorService solutionTranslatorService;
+  protected HammingNeighboursService hammingNeighboursService;
 
-  HillClimbing(Function function, Integer iterations) {
+  protected HillClimbing(Function function, Integer iterations) {
     this.iterations = iterations;
     this.function = function;
     this.solutionService = new SolutionGeneratorService();

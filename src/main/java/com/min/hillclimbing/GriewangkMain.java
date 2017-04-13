@@ -1,0 +1,21 @@
+package com.min.hillclimbing;
+
+import com.min.hillclimbing.function.Griewangk;
+import com.min.hillclimbing.solution.SolutionResult;
+
+public class GriewangkMain {
+
+    public static void main(String[] args) {
+        HillClimbing hillClimbing;
+        SolutionResult intermediateSolution;
+        SolutionResult solutionResult = null;
+        for (int i = 0; i < 500; i++) {
+            hillClimbing = new HillClimbing(new Griewangk(-600, 600, 5), 1000);
+            intermediateSolution = hillClimbing.run();
+            if (solutionResult == null || intermediateSolution.getResult() < solutionResult.getResult()) {
+                solutionResult = intermediateSolution;
+                System.out.println("Intermediate Result: " + solutionResult.getResult() + " at iteration " + i);
+            }
+        }
+    }
+}

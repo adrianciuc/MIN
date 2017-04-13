@@ -5,8 +5,8 @@ import com.min.hillclimbing.solution.Solution;
 
 public class SolutionGeneratorService {
 
-    private final RandomSolutionBuilder builder;
-    private final Math math;
+    protected RandomSolutionBuilder builder;
+    protected Math math;
 
     public SolutionGeneratorService() {
         this.builder = new RandomSolutionBuilder();

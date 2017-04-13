@@ -8,9 +8,9 @@ import com.min.hillclimbing.solution.Solution;
 public class SolutionTranslatorService {
 
     @VisibleForTesting
-    private final BinaryToIntegerTranslator binaryToIntegerTranslator;
+    protected final BinaryToIntegerTranslator binaryToIntegerTranslator;
     @VisibleForTesting
-    private final IntegerToDoubleIntervalTranslator integerToDoubleIntervalTranslator;
+    protected final IntegerToDoubleIntervalTranslator integerToDoubleIntervalTranslator;
 
     public SolutionTranslatorService() {
         this.binaryToIntegerTranslator = new BinaryToIntegerTranslator();
@@ -28,5 +28,13 @@ public class SolutionTranslatorService {
                 translated,
                 function.getLowerBound(),
                 function.getUpperBound());
+    }
+
+    public BinaryToIntegerTranslator getBinaryToIntegerTranslator() {
+        return binaryToIntegerTranslator;
+    }
+
+    public IntegerToDoubleIntervalTranslator getIntegerToDoubleIntervalTranslator() {
+        return integerToDoubleIntervalTranslator;
     }
 }

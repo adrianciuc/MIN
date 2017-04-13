@@ -1,16 +1,18 @@
-package com.min.hillclimbing;
+package com.min.hillclimbing.solution.shcb;
 
-import com.min.hillclimbing.function.Rastrigin;
+import com.min.hillclimbing.HillClimbing;
+import com.min.hillclimbing.function.Shcb;
+import com.min.hillclimbing.shcb.ShcbHillClimbing;
 import com.min.hillclimbing.solution.SolutionResult;
 
-public class Main {
+public class ShcbMain {
 
     public static void main(String[] args) {
         HillClimbing hillClimbing;
         SolutionResult intermediateSolution;
         SolutionResult solutionResult = null;
-        for (int i = 0; i < 500; i++) {
-            hillClimbing = new HillClimbing(new Rastrigin(-5.12, 5.12, 5), 1000);
+        for (int i = 0; i < 100; i++) {
+            hillClimbing = new ShcbHillClimbing(new Shcb(-3, 3, -2, 2, 1), 1000);
             intermediateSolution = hillClimbing.run();
             if (solutionResult == null || intermediateSolution.getResult() < solutionResult.getResult()) {
                 solutionResult = intermediateSolution;
