@@ -19,11 +19,6 @@ public class SolutionTranslatorService {
 
     public double[] translate(Solution solution, Function function) {
         int[] translated = binaryToIntegerTranslator.translate(solution.getRepresentation());
-//        System.out.print("[ ");
-//        for (int i : translated) {
-//            System.out.print(i + ", ");
-//        }
-//        System.out.print(" ]\n");
         return integerToDoubleIntervalTranslator.translate(
                 translated,
                 function.getLowerBound(),
