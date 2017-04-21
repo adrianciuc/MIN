@@ -20,7 +20,7 @@ public class HillClimbing {
   protected SolutionTranslatorService solutionTranslatorService;
   protected HammingNeighboursService hammingNeighboursService;
 
-  protected HillClimbing(Function function, Integer iterations) {
+  public HillClimbing(Function function, Integer iterations) {
     this.iterations = iterations;
     this.function = function;
     this.solutionService = new SolutionGeneratorService();
@@ -38,7 +38,7 @@ public class HillClimbing {
     return solutionResult;
   }
 
-  private SolutionResult findGlobalMin(Solution initialSolution) {
+  protected SolutionResult findGlobalMin(Solution initialSolution) {
     Solution solutionToEvaluate = initialSolution;
     double[] solutionTranslation = solutionTranslatorService.translate(solutionToEvaluate, function);
     double solutionResult = function.evaluateFor(solutionTranslation);

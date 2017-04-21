@@ -8,9 +8,9 @@ import com.min.hillclimbing.solution.Solution;
 public class GeneticAlgorithm {
 
     protected PopulationGeneratorService populationGenerator;
-    private Function function;
-    private int populationSize;
-    private int numberOfIterations;
+    protected Function function;
+    protected int populationSize;
+    protected int numberOfIterations;
     protected RouletteWheelSelectionService rouletteWheelSelectionService;
     protected PopulationMutationService mutationService;
     protected PopulationCrossoverService crossoverService;
