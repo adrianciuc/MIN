@@ -1,18 +1,18 @@
 package com.min.hybrid;
 
-import com.min.hillclimbing.function.Griewangk;
+import com.min.hillclimbing.function.Rosenbrock;
 
 import static java.util.stream.IntStream.range;
 
-public class GriewangkMain {
+public class RosenbrockMain {
 
     public static void main(String[] args) {
-        range(0, 30).parallel().forEach(GriewangkMain::execute);
+        range(0, 30).parallel().forEach(RosenbrockMain::execute);
     }
 
     private static void execute(Integer i) {
         HybridAlgorithm algorithm = new HybridAlgorithm(
-                new Griewangk(-600, 600, 10),
+                new Rosenbrock(-2.048, 2.048, 10),
                 50,
                 200,
                 0.000001,

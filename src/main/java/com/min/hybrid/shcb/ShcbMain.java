@@ -1,18 +1,18 @@
-package com.min.hybrid;
+package com.min.hybrid.shcb;
 
-import com.min.hillclimbing.function.Griewangk;
+import com.min.hillclimbing.function.Shcb;
 
 import static java.util.stream.IntStream.range;
 
-public class GriewangkMain {
+public class ShcbMain {
 
     public static void main(String[] args) {
-        range(0, 30).parallel().forEach(GriewangkMain::execute);
+        range(0, 30).parallel().forEach(ShcbMain::execute);
     }
 
     private static void execute(Integer i) {
-        HybridAlgorithm algorithm = new HybridAlgorithm(
-                new Griewangk(-600, 600, 10),
+        ShcbHybridAlgorithm algorithm = new ShcbHybridAlgorithm(
+                new Shcb(-3, 3, -2, 2, 1),
                 50,
                 200,
                 0.000001,
