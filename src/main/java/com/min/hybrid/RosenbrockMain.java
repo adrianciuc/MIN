@@ -12,7 +12,7 @@ public class RosenbrockMain {
 
     private static void execute(Integer i) {
         HybridAlgorithm algorithm = new HybridAlgorithm(
-                new Rosenbrock(-2.048, 2.048, 10),
+                new Rosenbrock(-2.048, 2.048, 30),
                 50,
                 200,
                 0.000001,
