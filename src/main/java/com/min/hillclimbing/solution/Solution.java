@@ -1,5 +1,7 @@
 package com.min.hillclimbing.solution;
 
+import static com.min.Utils.coppy;
+
 public class Solution {
 
     private int[][] representation;
@@ -16,6 +18,11 @@ public class Solution {
         this.representation = representation;
         this.size = size;
         this.sizeOfEachElement = sizeOfEachElement;
+    }
+
+    public Solution createCopy() {
+        int[][] rep = coppy(size, sizeOfEachElement, representation);
+        return new Solution(size, sizeOfEachElement, rep);
     }
 
     public int[][] getRepresentation() {

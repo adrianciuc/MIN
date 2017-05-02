@@ -14,7 +14,7 @@ public class PopulationCumulativeProbabilityService {
                                              double totalFitness) {
         double[] selectionProbability = getSelectionProbability(population, function, totalFitness);
         double[] cumulativeProbability = new double[population.getSolutions().size()];
-        cumulativeProbability[0] = 0.0;
+        cumulativeProbability[0] = selectionProbability[0];
         for (int i = 1; i < population.getSolutions().size() - 1; i++) {
             cumulativeProbability[i] = cumulativeProbability[i - 1] + selectionProbability[i];
         }

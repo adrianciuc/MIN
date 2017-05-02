@@ -7,6 +7,8 @@ import com.min.hillclimbing.solution.shcb.ShcbSolution;
 
 import java.util.Random;
 
+import static com.min.Utils.coppy;
+
 public class ShcbPopulationMutationService extends PopulationMutationService {
 
     public ShcbPopulationMutationService(double mutationProbability) {
@@ -16,7 +18,9 @@ public class ShcbPopulationMutationService extends PopulationMutationService {
     public void mutate(Population population) {
         Random random = new Random();
         for (int i = 0; i < population.getSolutions().size(); i++) {
-            int[][] representation = population.getSolutions().get(i).getRepresentation().clone();
+            int[][] representation = coppy(population.getSolutions().get(i).getRepresentation().length,
+                    population.getSolutions().get(i).getRepresentation()[0].length,
+                    population.getSolutions().get(i).getRepresentation());
             double probability = random.nextDouble();
             if (probability < mutationProbability) {
                 Solution selectedsolution = mutateRepresentation((ShcbSolution) population.getSolutions().get(i));
@@ -30,9 +34,13 @@ public class ShcbPopulationMutationService extends PopulationMutationService {
         int selectedChromosomeIndex = random.nextInt(2);
         int[][] mutated;
         if (selectedChromosomeIndex == 0) {
-            mutated = solution.getRepresentation().clone();
+            mutated = coppy(solution.getRepresentation().length,
+                    solution.getRepresentation()[0].length,
+                    solution.getRepresentation());
         } else {
-            mutated = solution.getSecondRepresentation().clone();
+            mutated = coppy(solution.getSecondRepresentation().length,
+                    solution.getSecondRepresentation()[0].length,
+                    solution.getSecondRepresentation());
         }
         int selectedBitIndex = random.nextInt(mutated[0].length);
         mutated[0][selectedBitIndex] = - mutated[0][selectedBitIndex] + 1;

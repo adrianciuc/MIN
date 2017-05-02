@@ -24,11 +24,15 @@ public class RouletteWheelSelectionService {
                 cumulativeProbabilityService.cumulativeProbabilityFor(population, function, totalFitness);
         for (int i = 0 ; i < population.getSolutions().size(); i++) {
             double randomSelector = random.nextDouble();
-            for (int j = 1; j < cumulativeProbability.length; j++) {
-                if (cumulativeProbability[j - 1] <= randomSelector && randomSelector < cumulativeProbability[j]) {
-                    selectedSolutions.add(population.getSolutions().get(j));
-                    if (selectedSolutions.size() == population.getSolutions().size()) {
-                        break;
+            if (randomSelector < cumulativeProbability[0]) {
+                selectedSolutions.add(population.getSolutions().get(0).createCopy());
+            } else {
+                for (int j = 1; j < cumulativeProbability.length; j++) {
+                    if (cumulativeProbability[j - 1] <= randomSelector && randomSelector < cumulativeProbability[j]) {
+                        selectedSolutions.add(population.getSolutions().get(j).createCopy());
+                        if (selectedSolutions.size() == population.getSolutions().size()) {
+                            break;
+                        }
                     }
                 }
             }

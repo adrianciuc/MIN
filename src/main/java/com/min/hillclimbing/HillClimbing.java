@@ -33,6 +33,7 @@ public class HillClimbing {
     SolutionResult solutionResult = null;
     for (int i = 0; i < iterations; i++) {
       solutionResult = findGlobalMin(solutionToTry);
+      System.out.println("Result at it:" + i +" is: " + solutionResult.getResult());
       solutionToTry = solutionResult.getSolution();
     }
     return solutionResult;

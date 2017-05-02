@@ -8,7 +8,7 @@ import static java.util.stream.IntStream.range;
 public class RastriginMain {
 
     public static void main(String[] args) {
-        range(0, 30).parallel().forEach(RastriginMain::execute);
+        execute(0);
     }
 
     private static void execute(Integer i) {

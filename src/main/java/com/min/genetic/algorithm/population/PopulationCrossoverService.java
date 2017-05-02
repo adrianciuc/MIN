@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static com.min.Utils.coppy;
+
 public class PopulationCrossoverService {
 
     private double crossoverProbability;
@@ -44,8 +46,12 @@ public class PopulationCrossoverService {
         List<Solution> crossoverIndividuals = new ArrayList<>();
         Random random = new Random();
         if (!random.nextBoolean()) {
-            int[][] aux = firstSolution.getRepresentation().clone();
-            firstSolution.setRepresentation(secondSolution.getRepresentation().clone());
+            int[][] aux = coppy(firstSolution.getRepresentation().length,
+                    firstSolution.getRepresentation()[0].length,
+                    firstSolution.getRepresentation());
+            firstSolution.setRepresentation(coppy(secondSolution.getRepresentation().length,
+                    secondSolution.getRepresentation()[0].length,
+                    secondSolution.getRepresentation()));
             secondSolution.setRepresentation(aux);
         }
         int chromosomeToCross = random.nextInt(firstSolution.getSize());

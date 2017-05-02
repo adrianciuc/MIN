@@ -2,7 +2,6 @@ package com.min.hybrid;
 
 import com.min.genetic.algorithm.GeneticAlgorithm;
 import com.min.genetic.algorithm.population.Population;
-import com.min.hillclimbing.HillClimbing;
 import com.min.hillclimbing.function.Function;
 import com.min.hillclimbing.solution.Solution;
 
@@ -33,7 +32,7 @@ public class HybridAlgorithm extends GeneticAlgorithm {
             double hillClimbingProbability = random.nextDouble();
             if (hillClimbingProbability < hcProbability) {
                 for (int j = 0; j < population.getSolutions().size(); j++) {
-                    HybridHillClimbing hc = new HybridHillClimbing(function, numberOfIterations);
+                    HybridHillClimbing hc = new HybridHillClimbing(function, 1);
                     population.getSolutions().set(j, hc.run(population.getSolutions().get(j)).getSolution());
                 }
             }
@@ -41,6 +40,7 @@ public class HybridAlgorithm extends GeneticAlgorithm {
             Solution bestIndividual = bestIndividualSelectorService.getBestIndividualFrom(population, function);
             double[] translatedIndividual = translatorService.translate(bestIndividual, function);
             double currentPopulationBestIndividualValue = function.evaluateFor(translatedIndividual);
+            System.out.println("Best individual at it: " + i + " is: " + currentPopulationBestIndividualValue);
 
             if (currentPopulationBestIndividualValue < bestValue) {
                 bestValue = currentPopulationBestIndividualValue;

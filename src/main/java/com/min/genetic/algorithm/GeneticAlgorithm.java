@@ -47,6 +47,7 @@ public class GeneticAlgorithm {
             Solution bestIndividual = bestIndividualSelectorService.getBestIndividualFrom(population, function);
             double[] translatedIndividual = translatorService.translate(bestIndividual, function);
             double currentPopulationBestIndividualValue = function.evaluateFor(translatedIndividual);
+            System.out.println("Best at it: " + i + " is: " + currentPopulationBestIndividualValue);
 
             if (currentPopulationBestIndividualValue < bestValue) {
                 bestValue = currentPopulationBestIndividualValue;

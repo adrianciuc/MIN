@@ -13,8 +13,8 @@ public class ShcbMain {
                 0.1,
                 0.4
         );
-        for (int i = 0; i < 30; i++) {
+
             algorithm.run();
-        }
+
     }
 }
