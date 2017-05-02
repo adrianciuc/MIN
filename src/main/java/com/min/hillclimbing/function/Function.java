@@ -6,7 +6,7 @@ public abstract class Function {
     private final double upperBound;
     private final int numberOfElementsInSolution;
 
-    Function(double lowerBound, double upperBound,
+    public Function(double lowerBound, double upperBound,
              int numberOfElementsInSolution) {
         this.lowerBound = lowerBound;
         this.upperBound = upperBound;
