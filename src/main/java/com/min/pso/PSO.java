@@ -53,6 +53,7 @@ public class PSO {
                     particle.setBestPosition(copyOf(particle.getPosition()));
                 }
             }
+            System.out.println(min(population, comparing(Particle::getBestFitness)).getBestFitness());
             if (bestParticle == null || min(population, comparing(Particle::getFitness)).getBestFitness() < bestParticle.getBestFitness()) {
                 bestParticle = min(population, comparing(Particle::getBestFitness)).copy();
             }
