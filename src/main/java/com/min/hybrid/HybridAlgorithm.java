@@ -17,7 +17,7 @@ public class HybridAlgorithm extends GeneticAlgorithm {
         this.hcProbability = hcProbability;
     }
 
-    public void run() {
+    public double run() {
         Population population = populationGenerator.generatePopulation(populationSize, function);
         double bestValue = Double.MAX_VALUE;
         Solution bestGlobalIndividual = null;
@@ -51,5 +51,6 @@ public class HybridAlgorithm extends GeneticAlgorithm {
         bestIndividualFitness = fitnessCalculatorService.calculateFitnessFor(bestGlobalIndividual, function);
         System.out.println(
                 "Best function value is: " + bestValue + " for a solution with fitness: " + bestIndividualFitness + " after " + iterations + " iterations.");
+        return bestValue;
     }
 }

@@ -18,9 +18,6 @@ public class ShcbPopulationMutationService extends PopulationMutationService {
     public void mutate(Population population) {
         Random random = new Random();
         for (int i = 0; i < population.getSolutions().size(); i++) {
-            int[][] representation = coppy(population.getSolutions().get(i).getRepresentation().length,
-                    population.getSolutions().get(i).getRepresentation()[0].length,
-                    population.getSolutions().get(i).getRepresentation());
             double probability = random.nextDouble();
             if (probability < mutationProbability) {
                 Solution selectedsolution = mutateRepresentation((ShcbSolution) population.getSolutions().get(i));

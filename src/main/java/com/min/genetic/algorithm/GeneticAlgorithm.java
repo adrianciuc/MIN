@@ -4,6 +4,9 @@ import com.min.genetic.algorithm.population.*;
 import com.min.hillclimbing.function.Function;
 import com.min.hillclimbing.function.SolutionTranslatorService;
 import com.min.hillclimbing.solution.Solution;
+import com.min.hillclimbing.solution.shcb.ShcbSolution;
+
+import java.util.stream.Collectors;
 
 public class GeneticAlgorithm {
 
@@ -33,21 +36,32 @@ public class GeneticAlgorithm {
         this.fitnessCalculatorService = new PopulationFitnessCalculatorService(epsilon);
     }
 
-    public void run() {
+    public double run() {
         Population population = populationGenerator.generatePopulation(populationSize, function);
         double bestValue = Double.MAX_VALUE;
         Solution bestGlobalIndividual = null;
         double bestIndividualFitness;
         int iterations = 0;
         for (int i = 0; i < numberOfIterations; i++) {
+            if (!(population.getSolutions().stream().filter(it -> it.getRepresentation()[0].length != 9).collect(Collectors.toList()).isEmpty())) {
+                System.out.println("");
+            }
             rouletteWheelSelectionService.runOver(population, function);
+            if (!(population.getSolutions().stream().filter(it -> it.getRepresentation()[0].length != 9).collect(Collectors.toList()).isEmpty())) {
+                System.out.println("");
+            }
             mutationService.mutate(population);
+            if (!(population.getSolutions().stream().filter(it -> it.getRepresentation()[0].length != 9).collect(Collectors.toList()).isEmpty())) {
+                System.out.println("");
+            }
             crossoverService.crossoverPopulation(population);
+            if (!(population.getSolutions().stream().filter(it -> it.getRepresentation()[0].length != 9).collect(Collectors.toList()).isEmpty())) {
+                System.out.println("");
+            }
 
             Solution bestIndividual = bestIndividualSelectorService.getBestIndividualFrom(population, function);
             double[] translatedIndividual = translatorService.translate(bestIndividual, function);
             double currentPopulationBestIndividualValue = function.evaluateFor(translatedIndividual);
-            System.out.println("Best at it: " + i + " is: " + currentPopulationBestIndividualValue);
 
             if (currentPopulationBestIndividualValue < bestValue) {
                 bestValue = currentPopulationBestIndividualValue;
@@ -58,5 +72,6 @@ public class GeneticAlgorithm {
         bestIndividualFitness = fitnessCalculatorService.calculateFitnessFor(bestGlobalIndividual, function);
         System.out.println(
                 "Best function value is: " + bestValue + " for a solution with fitness: " + bestIndividualFitness + " after " + iterations + " iterations.");
+        return bestValue;
     }
 }

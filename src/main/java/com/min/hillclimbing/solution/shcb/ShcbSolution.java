@@ -8,7 +8,7 @@ public class ShcbSolution extends Solution {
 
     private final int secondSize;
     private final int sizeOfEachSecondElement;
-    private final int[][] secondRepresentation;
+    private int[][] secondRepresentation;
 
     ShcbSolution(int size, int sizeOfEachElement, int secondSize, int sizeOfEachSecondElement) {
         super(size, sizeOfEachElement);
@@ -29,8 +29,8 @@ public class ShcbSolution extends Solution {
     }
 
     public Solution createCopy() {
-        int[][] rep1 = coppy(getSize(), getSizeOfEachElement(), getRepresentation());
-        int[][] rep2 = coppy(secondSize, sizeOfEachSecondElement, secondRepresentation);
+        int[][] rep1 = coppy(getRepresentation().length, getRepresentation()[0].length, getRepresentation());
+        int[][] rep2 = coppy(secondRepresentation.length, secondRepresentation[0].length, secondRepresentation);
         return new ShcbSolution(getSize(), getSizeOfEachElement(), rep1, secondSize, sizeOfEachSecondElement, rep2);
     }
 
@@ -44,5 +44,9 @@ public class ShcbSolution extends Solution {
 
     public int getSizeOfEachSecondElement() {
         return sizeOfEachSecondElement;
+    }
+
+    public void setSecondRepresentation(int[][] secondRepresentation) {
+        this.secondRepresentation = secondRepresentation;
     }
 }

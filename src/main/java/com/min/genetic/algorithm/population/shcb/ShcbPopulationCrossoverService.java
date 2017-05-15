@@ -23,10 +23,18 @@ public class ShcbPopulationCrossoverService extends PopulationCrossoverService {
             int[][] aux = coppy(firstSolution.getRepresentation().length,
                     firstSolution.getRepresentation()[0].length,
                     firstSolution.getRepresentation());
+            int[][] auxPrim = coppy(((ShcbSolution)firstSolution).getSecondRepresentation().length,
+                    ((ShcbSolution)firstSolution).getSecondRepresentation()[0].length,
+                    ((ShcbSolution)firstSolution).getSecondRepresentation());
             firstSolution.setRepresentation(coppy(secondSolution.getRepresentation().length,
                     secondSolution.getRepresentation()[0].length,
                     secondSolution.getRepresentation()));
+            ((ShcbSolution)firstSolution).setSecondRepresentation(
+                    coppy(((ShcbSolution)secondSolution).getSecondRepresentation().length,
+                            ((ShcbSolution)secondSolution).getSecondRepresentation()[0].length,
+                            ((ShcbSolution)secondSolution).getSecondRepresentation()));
             secondSolution.setRepresentation(aux);
+            ((ShcbSolution)secondSolution).setSecondRepresentation(auxPrim);
         }
         int chromosomeToCross = random.nextInt(2);
         int[][] crossedChromosomes;

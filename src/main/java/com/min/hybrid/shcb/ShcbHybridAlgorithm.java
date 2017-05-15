@@ -18,7 +18,7 @@ public class ShcbHybridAlgorithm extends ShcbGeneticAlgorithm {
         this.hcProbability = hcProbability;
     }
 
-    public void run() {
+    public double run() {
         Population population = populationGenerator.generatePopulation(populationSize, function);
         double bestValue = Double.MAX_VALUE;
         Solution bestGlobalIndividual = null;
@@ -51,5 +51,6 @@ public class ShcbHybridAlgorithm extends ShcbGeneticAlgorithm {
         bestIndividualFitness = fitnessCalculatorService.calculateFitnessFor(bestGlobalIndividual, function);
         System.out.println(
                 "Best function value is: " + bestValue + " for a solution with fitness: " + bestIndividualFitness + " after " + iterations + " iterations.");
+        return bestValue;
     }
 }
