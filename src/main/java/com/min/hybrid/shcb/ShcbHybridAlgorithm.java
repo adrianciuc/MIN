@@ -33,7 +33,7 @@ public class ShcbHybridAlgorithm extends ShcbGeneticAlgorithm {
             double hillClimbingProbability = random.nextDouble();
             if (hillClimbingProbability < hcProbability) {
                 for (int j = 0; j < population.getSolutions().size(); j++) {
-                    ShcbHybridHillClimbing hc = new ShcbHybridHillClimbing(function, numberOfIterations);
+                    ShcbHybridHillClimbing hc = new ShcbHybridHillClimbing(function, 1);
                     population.getSolutions().set(j, hc.run(population.getSolutions().get(j)).getSolution());
                 }
             }
