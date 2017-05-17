@@ -6,7 +6,12 @@ import com.min.hillclimbing.function.SolutionTranslatorService;
 import com.min.hillclimbing.solution.Solution;
 import com.min.hillclimbing.solution.shcb.ShcbSolution;
 
+import java.io.IOException;
 import java.util.stream.Collectors;
+
+import static com.min.hillclimbing.function.Rastrigin.EVALUATION_COUNTER;
+import static java.nio.file.Files.write;
+import static java.nio.file.Paths.get;
 
 public class GeneticAlgorithm {
 
@@ -20,6 +25,7 @@ public class GeneticAlgorithm {
     protected PopulationBestIndividualSelectorService bestIndividualSelectorService;
     protected SolutionTranslatorService translatorService;
     protected PopulationFitnessCalculatorService fitnessCalculatorService;
+    protected StringBuffer buffer;
 
     public GeneticAlgorithm(Function function, int populationSize,
                             int numberOfIterations, double epsilon, double mutationProbability,
@@ -34,6 +40,7 @@ public class GeneticAlgorithm {
         this.bestIndividualSelectorService = new PopulationBestIndividualSelectorService();
         this.translatorService = new SolutionTranslatorService();
         this.fitnessCalculatorService = new PopulationFitnessCalculatorService(epsilon);
+        buffer = new StringBuffer();
     }
 
     public double run() {
@@ -43,21 +50,9 @@ public class GeneticAlgorithm {
         double bestIndividualFitness;
         int iterations = 0;
         for (int i = 0; i < numberOfIterations; i++) {
-            if (!(population.getSolutions().stream().filter(it -> it.getRepresentation()[0].length != 9).collect(Collectors.toList()).isEmpty())) {
-                System.out.println("");
-            }
             rouletteWheelSelectionService.runOver(population, function);
-            if (!(population.getSolutions().stream().filter(it -> it.getRepresentation()[0].length != 9).collect(Collectors.toList()).isEmpty())) {
-                System.out.println("");
-            }
             mutationService.mutate(population);
-            if (!(population.getSolutions().stream().filter(it -> it.getRepresentation()[0].length != 9).collect(Collectors.toList()).isEmpty())) {
-                System.out.println("");
-            }
             crossoverService.crossoverPopulation(population);
-            if (!(population.getSolutions().stream().filter(it -> it.getRepresentation()[0].length != 9).collect(Collectors.toList()).isEmpty())) {
-                System.out.println("");
-            }
 
             Solution bestIndividual = bestIndividualSelectorService.getBestIndividualFrom(population, function);
             double[] translatedIndividual = translatorService.translate(bestIndividual, function);
@@ -67,9 +62,19 @@ public class GeneticAlgorithm {
                 bestValue = currentPopulationBestIndividualValue;
                 bestGlobalIndividual = bestIndividual;
                 iterations = i;
+                buffer.append(EVALUATION_COUNTER)
+                        .append(",")
+                        .append(currentPopulationBestIndividualValue)
+                        .append("\n");
+                System.out.println("Result after " + EVALUATION_COUNTER +" is: " + currentPopulationBestIndividualValue);
             }
         }
         bestIndividualFitness = fitnessCalculatorService.calculateFitnessFor(bestGlobalIndividual, function);
+        try {
+            write(get("C:\\Users\\adria\\results_genetic.csv"), buffer.toString().getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.println(
                 "Best function value is: " + bestValue + " for a solution with fitness: " + bestIndividualFitness + " after " + iterations + " iterations.");
         return bestValue;

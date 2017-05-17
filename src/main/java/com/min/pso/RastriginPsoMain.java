@@ -24,9 +24,9 @@ public class RastriginPsoMain {
         write(get(FILE_WITH_RESULTS), buffer.toString().getBytes());
     }
 
-    private static double executePSO(Integer numberOfIterations) {
+    private static double executePSO(Integer numberOfElementsInSolution) {
         PSO pso = new PSO(
-                new Rastrigin(-5.12, 5.12, numberOfIterations),
+                new Rastrigin(-5.12, 5.12, numberOfElementsInSolution),
                 100,
                 1000,
                 0,

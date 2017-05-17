@@ -2,10 +2,14 @@ package com.min.pso;
 
 import com.min.hillclimbing.function.Function;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
+import static com.min.hillclimbing.function.Rastrigin.EVALUATION_COUNTER;
 import static com.min.pso.Utils.copyOf;
+import static java.nio.file.Files.write;
+import static java.nio.file.Paths.get;
 import static java.util.Collections.min;
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
@@ -24,6 +28,7 @@ public class PSO {
     private final double minW;
     private final double w2;
     private final double w3;
+    private final StringBuffer buffer;
 
     public PSO(Function function, int populationSize, int iterations, double minSpeed, double maxSpeed,
                double maxW, double minW, double w2, double w3) {
@@ -38,6 +43,7 @@ public class PSO {
         this.minW = minW;
         this.w2 = w2;
         this.w3 = w3;
+        buffer = new StringBuffer();
     }
 
     public Particle execute() {
@@ -56,12 +62,22 @@ public class PSO {
 //            System.out.println(min(population, comparing(Particle::getBestFitness)).getBestFitness());
             if (bestParticle == null || min(population, comparing(Particle::getFitness)).getBestFitness() < bestParticle.getBestFitness()) {
                 bestParticle = min(population, comparing(Particle::getBestFitness)).copy();
+                buffer.append(EVALUATION_COUNTER)
+                        .append(",")
+                        .append(bestParticle.getBestFitness())
+                        .append("\n");
+                System.out.println("Result after " + EVALUATION_COUNTER +" is: " + bestParticle.getBestFitness());
             }
             w = maxW - ((((double) i)/iterations) * (maxW - minW));
             for (Particle particle : population) {
                 updateSpeedAndPosition(particle, bestParticle, function, w);
             }
             population.forEach(particle -> particle.setFitness(function.evaluateFor(particle.getPosition())));
+        }
+        try {
+            write(get("C:\\Users\\adria\\results_pso.csv"), buffer.toString().getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return bestParticle;
     }

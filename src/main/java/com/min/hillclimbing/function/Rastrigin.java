@@ -6,6 +6,8 @@ import static java.lang.Math.pow;
 
 public class Rastrigin extends Function {
 
+    public static Integer EVALUATION_COUNTER = 0;
+
     public Rastrigin(double lowerBound, double upperBound, int numberOfElementsInSolution) {
         super(lowerBound, upperBound, numberOfElementsInSolution);
     }
@@ -16,6 +18,7 @@ public class Rastrigin extends Function {
         for (double element : candidateSolution) {
             sum = sum + ((pow(element, 2) - (10 * cos(2 * PI * element))));
         }
+        EVALUATION_COUNTER++;
         return sum;
     }
 }

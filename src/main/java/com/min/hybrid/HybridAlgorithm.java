@@ -5,7 +5,12 @@ import com.min.genetic.algorithm.population.Population;
 import com.min.hillclimbing.function.Function;
 import com.min.hillclimbing.solution.Solution;
 
+import java.io.IOException;
 import java.util.Random;
+
+import static com.min.hillclimbing.function.Rastrigin.EVALUATION_COUNTER;
+import static java.nio.file.Files.write;
+import static java.nio.file.Paths.get;
 
 public class HybridAlgorithm extends GeneticAlgorithm {
 
@@ -45,9 +50,19 @@ public class HybridAlgorithm extends GeneticAlgorithm {
                 bestValue = currentPopulationBestIndividualValue;
                 bestGlobalIndividual = bestIndividual;
                 iterations = i;
+                buffer.append(EVALUATION_COUNTER)
+                        .append(",")
+                        .append(currentPopulationBestIndividualValue)
+                        .append("\n");
+                System.out.println("Result after " + EVALUATION_COUNTER +" is: " + currentPopulationBestIndividualValue);
             }
         }
         bestIndividualFitness = fitnessCalculatorService.calculateFitnessFor(bestGlobalIndividual, function);
+        try {
+            write(get("C:\\Users\\adria\\results_hybrid.csv"), buffer.toString().getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.println(
                 "Best function value is: " + bestValue + " for a solution with fitness: " + bestIndividualFitness + " after " + iterations + " iterations.");
         return bestValue;
