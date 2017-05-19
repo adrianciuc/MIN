@@ -10,6 +10,7 @@ import com.min.hillclimbing.solution.SolutionResult;
 import java.io.IOException;
 import java.util.List;
 
+import static com.min.hillclimbing.function.Rastrigin.EVALUATIONS_BEST_RESULT;
 import static com.min.hillclimbing.function.Rastrigin.EVALUATION_COUNTER;
 import static java.nio.file.Files.write;
 import static java.nio.file.Paths.get;
@@ -23,7 +24,7 @@ public class HillClimbing {
   protected SolutionGeneratorService solutionService;
   protected SolutionTranslatorService solutionTranslatorService;
   protected HammingNeighboursService hammingNeighboursService;
-  private StringBuffer buffer;
+  private final StringBuffer buffer;
 
   public HillClimbing(Function function, Integer iterations) {
     this.iterations = iterations;
@@ -61,14 +62,21 @@ public class HillClimbing {
       if (neighbourResult < solutionResult) {
         solutionResult = neighbourResult;
         solutionToEvaluate = hammingNeighbour;
-        System.out.println("Result after " + EVALUATION_COUNTER +" is: " + neighbourResult);
-        buffer.append(EVALUATION_COUNTER)
-                .append(",")
-                .append(neighbourResult)
-                .append("\n");
+        if (neighbourResult < EVALUATIONS_BEST_RESULT) {
+          EVALUATIONS_BEST_RESULT = neighbourResult;
+          System.out.println("Result after " + EVALUATION_COUNTER +" is: " + EVALUATIONS_BEST_RESULT);
+          buffer.append(EVALUATION_COUNTER)
+                  .append(",")
+                  .append(EVALUATIONS_BEST_RESULT)
+                  .append("\n");
+        }
         break;
       }
     }
     return new SolutionResult(solutionToEvaluate, solutionResult);
+  }
+
+  public StringBuffer getBuffer() {
+    return buffer;
   }
 }

@@ -7,6 +7,7 @@ import static java.lang.Math.pow;
 public class Rastrigin extends Function {
 
     public static Integer EVALUATION_COUNTER = 0;
+    public static double EVALUATIONS_BEST_RESULT = Double.MAX_VALUE;
 
     public Rastrigin(double lowerBound, double upperBound, int numberOfElementsInSolution) {
         super(lowerBound, upperBound, numberOfElementsInSolution);
